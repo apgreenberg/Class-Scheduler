@@ -12,6 +12,7 @@ using std::getline;
 int main() {
   School *s = new School();
   string name;
+  string testing;
   cout << "Hi new student!" << endl;
   cout << "Please enter your full name" << endl;
   getline(cin,name);
