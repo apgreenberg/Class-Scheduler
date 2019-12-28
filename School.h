@@ -55,6 +55,12 @@ public:
   void generateSchedules();
   void assignStudentSchedules();
   void assignTeacherSchedules();
+  void printDirectory() {
+    cout << "There are " << students.size() << " students in your database" << endl;
+    for (size_t i = 0; i < students.size(); i++) {
+      cout << "ID " << students[i]->getId() << ": " << students[i]->getLastName() << ", " << students[i]->getFirstName() << " " << students[i]->getMiddleName() << endl;
+    }
+  }
   void printSchedule(int id) {
   Student* find = nullptr;
     for (size_t i = 0; i < students.size(); i++) {
@@ -68,6 +74,10 @@ public:
       }
     }
     cout << find->getFirstName() << " " << find->getLastName() << " has schedule:" << endl;
+    if (!find->getClassSchedule().size()) {
+      cout << "NO SCHEDULE GENERATED!" << endl;
+      return;
+    }
     for (size_t i = 0; i < find->getClassSchedule().size(); i++) {
       cout << "Period " << i << ": " << find->getClassSchedule()[i]->getClassName() << " with " << find->getClassSchedule()[i]->getTeacher()->getTeacherName() << endl;
     }
