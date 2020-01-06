@@ -18,12 +18,16 @@ void Commands::mainmenu(School* s) {
   } else if (message == "exit") {
     return;
   } else {
+    system("cls");
     cout << "You didn't enter a valid command. Please try again" << endl;
     mainmenu(s);
   }
 }
 void Commands::studentMenu(School* s) {
-  cout << "To look at a directory of all the students, type 'dir'" << endl << "To look up student information including class schedules, type 'find'" << endl << "To add a student to the school directory, type 'add'" << endl;
+  cout << "To view a directory of all the students, type 'dir'" << endl
+  << "To look up or edit data for a specific student including class schedules, type 'find'" << endl
+  << "To add a student to the school directory, type 'add'" << endl
+  << "To remove a student from the school directory, type 'remove'" << endl;
   string message2;
   getline(cin, message2);
   if (message2 == "find") {
@@ -35,7 +39,11 @@ void Commands::studentMenu(School* s) {
   } else if (message2 == "dir") {
     system("cls");
     studentDirectory(s);
+  } else if (message2 == "remove") {
+    system("cls");
+    removeStudent(s);
   } else {
+    system("cls");
     cout << "You didn't enter a valid command. Please try again" << endl;
     studentMenu(s);
   }
@@ -112,6 +120,7 @@ void Commands::studentDirectory(School* s) {
   cin.ignore();
   mainmenu(s);
 }
+void Commands::removeStudent(School *s) {}
 void Commands::addTeachers(School *s) {
   cout << "Please enter the teacher's full name:" << endl;
   string name;

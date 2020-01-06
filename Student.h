@@ -55,5 +55,3 @@ private:
   vector<schoolClass*> classRequests;
   vector<schoolClass*> classSchedule;
 };
-
-#include "School.h"

@@ -2,7 +2,6 @@
 #include <string>
 #include <iterator>
 #include <cstdlib>
-#include "School.h"
 using std::cin;
 using std::cout;
 using std::endl;
@@ -17,6 +16,7 @@ public:
   void addStudents(School* s);
   void findStudent(School *s);
   void studentDirectory(School* s);
+  void removeStudent(School *s);
   void addTeachers(School* s);
   void findTeacher(School* s);
   void addClasses(School* s);

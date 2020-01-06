@@ -1,4 +1,3 @@
-#pragma once
 #include <iostream>
 #include "schoolClass.h"
 using std::cout;

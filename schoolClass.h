@@ -1,5 +1,3 @@
-#pragma once
-
 #include "Student.h"
 #include "Teacher.h"
 #include "Room.h"

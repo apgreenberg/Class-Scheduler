@@ -1,5 +1,3 @@
-#pragma once
-#include "School.h"
 #include <string>
 #include <vector>
 
