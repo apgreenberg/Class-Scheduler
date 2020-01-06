@@ -52,15 +52,15 @@ void Commands::addStudents(School *s) {
     lastName = fullName[fullName.size()-1];
   }
   s->addStudent(firstName, middleName, lastName);
-  cout << "To add another student, press enter, otherwise type 'exit' to return to the Student Menu" << endl;
+  cout << "To add another student type 'add', otherwise press enter" << endl;
   string message;
   getline(cin, message);
-  if (message == "exit") {
-    system("cls");
-    return studentMenu(s);
-  } else {
+  if (message == "add") {
     system("cls");
     return addStudents(s);
+  } else {
+    system("cls");
+    return studentMenu(s);
   }
 }
 void Commands::findStudent(School* s) {
@@ -83,14 +83,17 @@ void Commands::findStudent(School* s) {
       return findStudent(s);
     }
     string command;
-    cout << "To edit info about this student, type 'edit'" << endl
+    cout << "To add or change class requests for this student, type 'class'" << endl
+    << "To edit other info about this student, type 'edit'" << endl
     << "To remove this student from the database, type 'remove'" << endl
     << "To go back to the student menu, press enter" << endl;
     getline(cin, command);
-    if (command == "edit") {
-
+    if (command == "class") {
+      return editStudentClasses(student, s);
+    } else if (command == "edit") {
+      return editStudent(student, s);
     } else if (command == "remove") {
-
+      return removeStudent(student, s);
     } else {
       system("cls");
       return studentMenu(s);
@@ -115,10 +118,17 @@ void Commands::studentDirectory(School* s) {
   s->printDirectory();
   cout << "Press enter to go to the main menu" << endl;
   cin.ignore();
-  return mainmenu(s);
+  return studentMenu(s);
 }
-void Commands::removeStudent(School *s) {
-  cout << "Please enter the ID of the student you want to remove" << endl;
-  string id;
-  getline(cin, id);
+void Commands::editStudentClasses(Student *student, School *s) {
+ cout << "To add a class to this student's class requests, type 'add'" << endl
+ << "To edit class requests for this student, type 'edit'" << endl;
+ string command;
+ getline(cin, command);
+}
+void Commands::editStudent(Student *student, School *s) {
+
+}
+void Commands::removeStudent(Student *student, School *s) {
+
 }

@@ -6,19 +6,45 @@ using std::pair;
 
 class School {
 public:
-  School() {
+  School(int periods_) {
     students = vector<Student*>();
     teachers = vector<Teacher*>();
     rooms = vector<Room*>();
     classes = vector<schoolClass*>();
     requests = vector<vector<pair<schoolClass*, Student*>>>();
     results = vector<vector<pair<schoolClass*, Student*>>>();
-    periods = 0;
+    periods = periods_;
   }
   School(vector<Student*> students_, vector<Teacher*> teachers_, vector<Room*> rooms_, vector<schoolClass*> classes_, int periods_) :
     students(students_), teachers(teachers_), rooms(rooms_), classes(classes_), periods(periods_) {
       requests = vector<vector<pair<schoolClass*, Student*>>>();
       results = vector<vector<pair<schoolClass*, Student*>>>();
+  }
+  ~School() {
+    for (auto s: students) {
+      delete s;
+    }
+    students.clear();
+    for (auto t: teachers) {
+      delete t;
+    }
+    teachers.clear();
+    for (auto c: classes) {
+      delete c;
+    }
+    classes.clear();
+    for (auto r: rooms) {
+      delete r;
+    }
+    rooms.clear();
+    for (auto req: requests) {
+      req.clear();
+    }
+    requests.clear();
+    for (auto res: requests) {
+      res.clear();
+    }
+    results.clear();
   }
   void addStudent(string firstName_, string middleName_, string lastName_) {
     Student* s = new Student(firstName_, middleName_, lastName_);
