@@ -2,6 +2,7 @@
 #include <string>
 #include <iterator>
 #include <cstdlib>
+#include <algorithm>
 using std::cin;
 using std::cout;
 using std::endl;
@@ -9,6 +10,7 @@ using std::string;
 using std::begin;
 using std::end;
 using std::getline;
+using std::remove;
 class Commands {
 public:
   void schoolSetup();

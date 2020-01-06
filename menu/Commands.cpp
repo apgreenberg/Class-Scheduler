@@ -2,6 +2,11 @@
 void Commands::schoolSetup() {
   cout << "To open existing school data from CSV, type 'open' (coming soon)" << endl;
   cout << "You will be making a new school!" << endl;
+  cout << "Please enter a name for your new school" << endl;
+  string name;
+  getline(cin, name);
+  string nameWithSpaces = name;
+  name.erase(remove(name.begin(), name.end(), ' '), name.end());
   cout << "How many class periods does your school have per day (must be between 2-10). Include lunch periods." << endl;
   string periods;
   getline(cin, periods);
@@ -9,7 +14,9 @@ void Commands::schoolSetup() {
   while (it != periods.end() && std::isdigit(*it)) ++it;
   bool isValid = !periods.empty() && it == periods.end() && stoi(periods) > 1 && stoi(periods) <= 10;
   if (isValid) {
-    School *s = new School(stoi(periods));
+    School *s = new School(name, stoi(periods));
+    system("cls");
+    cout << nameWithSpaces << " successfully created!" << endl;
     mainmenu(s);
     delete s;
     s = nullptr;

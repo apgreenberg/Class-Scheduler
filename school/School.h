@@ -6,7 +6,8 @@ using std::pair;
 
 class School {
 public:
-  School(int periods_) {
+  School(string name_, int periods_) {
+    name = name_;
     students = vector<Student*>();
     teachers = vector<Teacher*>();
     rooms = vector<Room*>();
@@ -15,8 +16,8 @@ public:
     results = vector<vector<pair<schoolClass*, Student*>>>();
     periods = periods_;
   }
-  School(vector<Student*> students_, vector<Teacher*> teachers_, vector<Room*> rooms_, vector<schoolClass*> classes_, int periods_) :
-    students(students_), teachers(teachers_), rooms(rooms_), classes(classes_), periods(periods_) {
+  School(string name_, vector<Student*> students_, vector<Teacher*> teachers_, vector<Room*> rooms_, vector<schoolClass*> classes_, int periods_) :
+    name(name_), students(students_), teachers(teachers_), rooms(rooms_), classes(classes_), periods(periods_) {
       requests = vector<vector<pair<schoolClass*, Student*>>>();
       results = vector<vector<pair<schoolClass*, Student*>>>();
   }
@@ -124,6 +125,7 @@ public:
     return find;
   }
 private:
+  string name;
   vector<Student*> students;
   vector<Teacher*> teachers;
   vector<Room*> rooms;
