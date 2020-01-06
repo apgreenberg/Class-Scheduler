@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #include <iterator>
 #include "school/School.cpp"
 #include "menu/Commands.cpp"

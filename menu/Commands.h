@@ -23,6 +23,8 @@ public:
   void removeStudent(Student *student, School *s);
   void editStudent(Student *student, School *s);
   void editStudentClasses(Student *student, School *s);
+  void editClasses(Student *student, School *s);
+  void addClasses(Student *student, School *s);
 
   void addTeachers(School* s);
   void findTeacher(School* s);

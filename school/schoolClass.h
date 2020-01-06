@@ -35,6 +35,9 @@ public:
   Teacher* getTeacher() {return teacher;}
   void setPeriod(int period_) {period = period_;}
   int getPeriod() {return period;}
+  void setClassCode(int code_) {classCode = code_;}
+  int getClassCode() {return classCode;}
+  void setClassName(string name_) {className = name_;}
   string getClassName() {return className;}
   void setClassCapacity (int capacity_) {classCapacity = capacity_;}
   int getClassCapacity() {return classCapacity;}

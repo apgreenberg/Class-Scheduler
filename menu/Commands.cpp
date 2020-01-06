@@ -37,11 +37,11 @@ void Commands::schoolSetup() {
 
 }
 void Commands::mainmenu(School* s) {
-  cout << "To manage students, type 'students' " << endl
+  cout << "To manage students, type 'students' (partly functional)" << endl
   << "To manage teachers, type 'teachers' (coming soon)" << endl
   << "To manage classes, type 'classes' (coming soon)" << endl
   << "To manage rooms, type 'rooms' (coming soon)" << endl
-  << "To save your school, type 'save' (coming soon)" << endl
+  << "To save your school, type 'save'" << endl
   << "To exit the program, type 'exit'" << endl;
   string message;
   getline(cin, message);
@@ -57,6 +57,8 @@ void Commands::mainmenu(School* s) {
   } else if (message == "rooms") {
     findRoom(s);
     return addRooms(s);
+  } else if (message == "save") {
+    return s->saveSchool();
   } else if (message == "exit") {
     return;
   } else {
@@ -69,5 +71,3 @@ void Commands::mainmenu(School* s) {
 #include "TeacherMenu.cpp"
 #include "ClassMenu.cpp"
 #include "RoomMenu.cpp"
-#include "SaveSchool.cpp"
-#include "OpenSchool.cpp"

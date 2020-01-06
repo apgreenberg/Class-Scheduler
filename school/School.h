@@ -79,6 +79,7 @@ public:
     }
     return false;
   }
+  string getName() {return name;}
   Student* getStudent(int id) {
     if (students.size() == 0) {
       cout << "You don't have any students in your database." << endl;
@@ -97,9 +98,29 @@ public:
     }
     return nullptr;
   }
+  schoolClass* getClass(int id) {
+    if (classes.size() == 0) {
+      cout << "You don't have any students in your database." << endl;
+      return nullptr;
+    }
+    for (size_t i = 0; i < classes.size(); i++) {
+      if (classes[i]->getClassCode() == id) {
+        return classes[i];
+      }
+      if (i == classes.size() - 1) {
+        cout << "Class " << id<< " not found!. Try again." << endl;
+        return nullptr;
+      }
+    }
+    return nullptr;
+  }
   void generateSchedules();
   void assignStudentSchedules();
   void assignTeacherSchedules();
+  void saveSchool();
+  string getClassScheduleCSV(Student *student);
+  string getPeriodsCSV();
+
   void printDirectory() {
     cout << "There are " << students.size() << " students in your database" << endl;
     for (size_t i = 0; i < students.size(); i++) {

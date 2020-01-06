@@ -89,6 +89,7 @@ void Commands::findStudent(School* s) {
     << "To go back to the student menu, press enter" << endl;
     getline(cin, command);
     if (command == "class") {
+      system("cls");
       return editStudentClasses(student, s);
     } else if (command == "edit") {
       return editStudent(student, s);
@@ -122,9 +123,37 @@ void Commands::studentDirectory(School* s) {
 }
 void Commands::editStudentClasses(Student *student, School *s) {
  cout << "To add a class to this student's class requests, type 'add'" << endl
- << "To edit class requests for this student, type 'edit'" << endl;
+ << "To edit/remove class requests for this student, type 'edit'" << endl;
  string command;
  getline(cin, command);
+ if (command == "add") {
+   return addClasses(student, s);
+ } else if (command == "edit") {
+   return editClasses(student, s);
+ } else {
+   cout << "Not a valid command. Try again." << endl;
+   editStudentClasses(student, s);
+ }
+}
+void Commands::addClasses(Student *student, School *s) {
+  cout << "Enter the course code for the course you would like to add" << endl;
+  string courseCode;
+  getline(cin, courseCode);
+  std::string::const_iterator it = courseCode.begin();
+  while (it != courseCode.end() && std::isdigit(*it)) ++it;
+  bool isInt = !courseCode.empty() && it == courseCode.end();
+  if (isInt) {
+    schoolClass* classToAdd = s->getClass(stoi(courseCode));
+    if (classToAdd == nullptr) {
+      return addClasses(student, s);
+    }
+  } else {
+    cout << "Not a valid course code. Try again" << endl;
+    return addClasses(student, s);
+  }
+}
+void Commands::editClasses(Student *student, School *s) {
+
 }
 void Commands::editStudent(Student *student, School *s) {
 
