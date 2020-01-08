@@ -52,7 +52,7 @@ void Commands::addStudents(School *s) {
     lastName = fullName[fullName.size()-1];
   }
   s->addStudent(firstName, middleName, lastName);
-  cout << "To add another student type 'add', otherwise press enter" << endl;
+  cout << "To add another student type 'add', otherwise press enter to return to the Student Menu" << endl;
   string message;
   getline(cin, message);
   if (message == "add") {

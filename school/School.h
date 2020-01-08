@@ -47,6 +47,10 @@ public:
     }
     results.clear();
   }
+  void addStudentFromFile(int id_, string firstName_, string middleName_, string lastName_) {
+    Student* s = new Student(firstName_, middleName_, lastName_, id_);
+    students.push_back(s);
+  }
   void addStudent(string firstName_, string middleName_, string lastName_) {
     Student* s = new Student(firstName_, middleName_, lastName_);
     s->setId(setNextId());
@@ -100,7 +104,7 @@ public:
   }
   schoolClass* getClass(int id) {
     if (classes.size() == 0) {
-      cout << "You don't have any students in your database." << endl;
+      cout << "You don't have any classes in your database." << endl;
       return nullptr;
     }
     for (size_t i = 0; i < classes.size(); i++) {
@@ -120,7 +124,8 @@ public:
   void saveSchool();
   string getClassScheduleCSV(Student *student);
   string getPeriodsCSV();
-
+  bool openSchool(string name);
+  bool openStudents(string name);
   void printDirectory() {
     cout << "There are " << students.size() << " students in your database" << endl;
     for (size_t i = 0; i < students.size(); i++) {

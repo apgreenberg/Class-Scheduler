@@ -1,40 +1,60 @@
 #include "Commands.h"
 void Commands::schoolSetup() {
-  cout << "To open existing school data from CSV, type 'open' (coming soon)" << endl;
-  cout << "You will be making a new school!" << endl;
-  cout << "Please enter a name for your new school" << endl;
-  string name;
-  getline(cin, name);
-  string nameWithSpaces = name;
-  name.erase(remove(name.begin(), name.end(), ' '), name.end());
-  cout << "How many class periods does your school have per day (must be between 2-10). Include lunch periods." << endl;
-  string periods;
-  getline(cin, periods);
-  std::string::const_iterator it = periods.begin();
-  while (it != periods.end() && std::isdigit(*it)) ++it;
-  bool isValid = !periods.empty() && it == periods.end() && stoi(periods) > 1 && stoi(periods) <= 10;
-  if (isValid) {
-    School *s = new School(name, stoi(periods));
+  cout << "To open existing school data from CSV, type 'open'" << endl
+  << "To make a new school, type 'new'" << endl;
+  string command;
+  getline(cin, command);
+  if (command == "open") {
     system("cls");
-    cout << nameWithSpaces << " successfully created!" << endl;
-    mainmenu(s);
-    delete s;
-    s = nullptr;
+    cout << "Enter the name of your school. Please make sure all the necessary files are in this folder." << endl;
+    string name;
+    getline(cin, name);
+    string nameWithSpaces = name;
+    name.erase(remove(name.begin(), name.end(), ' '), name.end());
+    School *s = new School(name, 8); // fix number of periods later
+    system("cls");
+    if (s->openSchool(name)) {
+      cout << nameWithSpaces << " successfully imported!" << endl;
+      mainmenu(s);
+      delete s;
+      s = nullptr;
+    } else {
+      cout << nameWithSpaces << " not found (or some files were missing)!" << endl;
+      return schoolSetup();
+    }
+  } else if (command == "new") {
+    system("cls");
+    cout << "You will be making a new school!" << endl;
+    cout << "Please enter a name for your new school" << endl;
+    string name;
+    getline(cin, name);
+    string nameWithSpaces = name;
+    name.erase(remove(name.begin(), name.end(), ' '), name.end());
+    cout << "How many class periods does your school have per day (must be between 2-10). Include lunch periods." << endl;
+    string periods;
+    getline(cin, periods);
+    std::string::const_iterator it = periods.begin();
+    while (it != periods.end() && std::isdigit(*it)) ++it;
+    bool isValid = !periods.empty() && it == periods.end() && stoi(periods) > 1 && stoi(periods) <= 10;
+    if (isValid) {
+      School *s = new School(name, stoi(periods));
+      system("cls");
+      cout << nameWithSpaces << " successfully created!" << endl;
+      mainmenu(s);
+      delete s;
+      s = nullptr;
+    } else {
+      cout << "Number of class periods not valid" << endl;
+      cout << "Press enter to try again" << endl;
+      cin.ignore();
+      system("cls");
+      return schoolSetup();
+    }
   } else {
-    cout << "Number of class periods not valid" << endl;
-    cout << "Press enter to try again" << endl;
-    cin.ignore();
     system("cls");
+    cout << "Not a valid command. Try again." << endl;
     schoolSetup();
   }
-  /** cout << "To open existing school data, enter the name of the school with no spaces." << endl;
-  cout << "To make a new school type new." << endl;
-  string command;
-  cin >> command;
-  cout << "Please enter a name for your new school with no spaces." << endl;
-  string name;
-  cin >> name; */
-
 }
 void Commands::mainmenu(School* s) {
   cout << "To manage students, type 'students' (partly functional)" << endl
