@@ -6,6 +6,16 @@ using std::pair;
 
 class School {
 public:
+  School(string name_) {
+    name = name_;
+    students = vector<Student*>();
+    teachers = vector<Teacher*>();
+    rooms = vector<Room*>();
+    classes = vector<schoolClass*>();
+    requests = vector<vector<pair<schoolClass*, Student*>>>();
+    results = vector<vector<pair<schoolClass*, Student*>>>();
+    periods = 8;
+  }
   School(string name_, int periods_) {
     name = name_;
     students = vector<Student*>();
@@ -83,6 +93,12 @@ public:
     }
     return false;
   }
+  void setPeriods(int periods_) {periods = periods_;}
+  int getPeriods() {return periods;}
+  vector<Student*> getStudents() {return students;}
+  vector<Teacher*> getTeachers() {return teachers;}
+  vector<schoolClass*> getClasses() {return classes;}
+  vector<Room*> getRooms() {return rooms;}
   string getName() {return name;}
   Student* getStudent(int id) {
     if (students.size() == 0) {
@@ -122,6 +138,7 @@ public:
   void assignStudentSchedules();
   void assignTeacherSchedules();
   void saveSchool();
+  void saveStudents();
   string getClassScheduleCSV(Student *student);
   string getPeriodsCSV();
   bool openSchool(string name);

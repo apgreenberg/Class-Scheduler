@@ -11,7 +11,7 @@ void Commands::schoolSetup() {
     getline(cin, name);
     string nameWithSpaces = name;
     name.erase(remove(name.begin(), name.end(), ' '), name.end());
-    School *s = new School(name, 8); // fix number of periods later
+    School *s = new School(name); // fix number of periods later
     system("cls");
     if (s->openSchool(name)) {
       cout << nameWithSpaces << " successfully imported!" << endl;
